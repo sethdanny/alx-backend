@@ -4,6 +4,8 @@
 import csv
 import math
 from typing import List, Tuple
+
+
 def index_range(page: int, page_size: int) -> Tuple[int, int]:
     """function which retrieves the content on pages"""
     start_index = (page - 1) * page_size
@@ -31,12 +33,12 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
-            """Retrieves a page of data.
-        """
-            assert type(page) == int and type(page_size) == int
-            assert page > 0 and page_size > 0
-            start_index, end_index = index_range(page, page_size)
-            data = self.dataset()
-            if start_index > len(data):
-                return []
-            return data[start_index:end_index]
+        """Retrieves a page of data.
+    """
+        assert type(page) == int and type(page_size) == int
+        assert page > 0 and page_size > 0
+        start_index, end_index = index_range(page, page_size)
+        data = self.dataset()
+        if start_index > len(data):
+            return []
+        return data[start_index:end_index]
