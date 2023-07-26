@@ -8,6 +8,7 @@ class BasicCache(BaseCaching):
     """Represents an object that allows storing and
     retrieving items from a dictionary.
     """
+
     def put(self, key, item):
         """Adds an item in the cache.
         """
@@ -18,4 +19,6 @@ class BasicCache(BaseCaching):
     def get(self, key):
         """Retrieves an item by key.
         """
-        return self.cache_data.get(key, None)
+        if key is None or self.cache_data.get(key) is None:
+            return None
+        return self.cache_data[key]
