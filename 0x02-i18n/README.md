@@ -1,7 +1,5 @@
 # 0x02. i18n - Flask Project
 
-![Flask Logo](https://flask.palletsprojects.com/en/2.1.x/_images/flask-logo.png)
-
 ## Introduction
 
 This is a Flask project for implementing internationalization (i18n) features on the back-end. Internationalization is the process of designing and developing an application to be adapted for various languages and regions without requiring major code changes. This project focuses on enabling multi-language support in a Flask web application.
