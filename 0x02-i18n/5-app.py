@@ -7,6 +7,7 @@ from flask_babel import Babel
 app = Flask(__name__)
 babel = Babel(app)
 
+
 users = {
     1: {"name": "Balou", "locale": "fr", "timezone": "Europe/Paris"},
     2: {"name": "Beyonce", "locale": "en", "timezone": "US/Central"},
@@ -16,7 +17,7 @@ users = {
 
 
 def get_user():
-    """gets user dictionary from user table based on url parameter"""
+    """gets user dictionary from user table based on url param"""
     user_id = request.args.get('login_as')
     if user_id:
         user_id = int(user_id)
@@ -37,7 +38,7 @@ app.config.from_object(Config)
 def get_locale():
     """determine best match with supported languages"""
     locale = request.args.get('locale')
-    if locale and (locale == 'en' or locale == 'fr'):
+    if locale and locale in Config.LANGUAGES:
         return locale
     else:
         return request.accept_languages.best_match(app.config['LANGUAGES'])
@@ -52,7 +53,7 @@ def before_request():
 @app.route('/')
 def index():
     """renders html template"""
-    return render_template('4-index.html')
+    return render_template('5-index.html')
 
 
 if __name__ == '__main__':
