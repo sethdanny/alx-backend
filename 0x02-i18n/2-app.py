@@ -2,8 +2,7 @@
 """ flask application"""
 
 from flask import Flask, render_template, request
-from flask_babel import Babel, gettext
-
+from flask_babel import Babel
 app = Flask(__name__)
 babel = Babel(app)
 
@@ -26,10 +25,9 @@ def get_locale():
 
 
 @app.route('/', strict_slashes=False)
-def get_index() -> str:
+def index() -> str:
     """welcome to flask application"""
-    title = gettext("Welcome to Holberton")
-    return render_template('2-index.html', title=title)
+    return render_template('2-index.html')
 
 
 if __name__ == '__main__':
