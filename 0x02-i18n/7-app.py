@@ -53,7 +53,7 @@ def get_locale():
 
 
 @babel.timezoneselector
-def get_timezone():
+def get_timezone() -> str:
     """determine best match for timezone"""
     tz = request.args.get('timezone')
     if not tz:
