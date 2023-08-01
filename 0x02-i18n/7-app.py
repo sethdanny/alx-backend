@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """
- Module for translation/time zone normalizing application
+Route module for translation/time zone normalizing application
 """
 from flask import Flask, render_template, request, g
 from flask_babel import Babel
+import pytz
 app = Flask(__name__)
 babel = Babel(app)
 
@@ -51,6 +52,21 @@ def get_locale():
     return locale
 
 
+@babel.timezoneselector
+def get_timezone():
+    """determine best match for timezone"""
+    tz = request.args.get('timezone')
+    if not tz:
+        if g.user:
+            tz = g.user.get('timezone')
+
+    try:
+        pytz.timezone(tz)
+    except pytz.exceptions.UnknownTimeZoneError:
+        tz = Config.BABEL_DEFAULT_TIMEZONE
+    return tz
+
+
 @app.before_request
 def before_request():
     """sets user as global variable"""
@@ -59,8 +75,8 @@ def before_request():
 
 @app.route('/', strict_slashes=False)
 def index():
-    """renders html template to display content"""
-    return render_template('6-index.html')
+    """renders html template"""
+    return render_template('7-index.html')
 
 
 if __name__ == '__main__':
