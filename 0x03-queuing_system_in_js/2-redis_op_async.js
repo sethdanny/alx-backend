@@ -16,7 +16,7 @@ const setNewSchool = (schoolName, value) => {
 };
 
 const displaySchoolValue = (schoolName) => {
-  client.get(schoolName, (err, reply) => {
+  client.get(schoolName, (_err, reply) => {
     console.log(reply);
   });
 };
